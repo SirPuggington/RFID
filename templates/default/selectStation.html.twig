@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Snackwerke</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+<body>
+
+<h1 id="station-list-headline">Bitte Station auswählen</h1>
+
+{% for station in stations %}
+
+    <a href="/station/{{ station.key }}">
+
+        <div class="station-list">
+            <h3>{{ station.name }}</h3>
+        </div>
+
+    </a>
+
+{% endfor %}
+
+</body>
+</html>
+

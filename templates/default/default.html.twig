@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Snackwerke</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/progressbar.js@1.1.0/dist/progressbar.min.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+
+<body>
+
+<div>
+    <div id="mainText" data-station="{{ station.key }}">
+        Bitte Chip scannen
+    </div>
+    <div id="nameText">
+        <p>hello</p>
+    </div>
+
+    <div class="products">
+        {% for product in station.products %}
+        <div class="productCard" data-product="{{ product.key }}">
+            <img src="{{ asset(product.icon?product.icon.path~product.icon.filename:"/Product Icons/missing.jpg") }}" alt="{{ product.name }}">
+            <h2 class="productName">{{ product.name }}</h2>
+            <p class="productPrice">{{ product.price ~ "€" }}</p>
+            <button class="direct_purchase">Sofort Kaufen</button>
+            <p>oder Anzahl wählen</p>
+            <button class="change_amount sub">-</button>
+            <input type="number" value="0">
+            <button class="change_amount add">+</button>
+        </div>
+        {% endfor %}
+
+
+    </div>
+
+    <button class="collective_purchase" disabled><span class="collective_purchase_number">0</span> Produkte Kaufen</button>
+
+</div>
+<div id="progressbar"></div>
+<div id="testing"></div>
+</body>
+</html>
