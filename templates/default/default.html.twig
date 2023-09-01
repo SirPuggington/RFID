@@ -10,7 +10,7 @@
 </head>
 
 <body>
-
+<img src="{{ asset('img/quellwerke-hintergrundbild.png') }}" alt="">
 <div>
     <div id="mainText" data-station="{{ station.key }}">
         Bitte Chip scannen
@@ -22,24 +22,26 @@
     <div class="products">
         {% for product in station.products %}
         <div class="productCard" data-product="{{ product.key }}">
-            <img src="{{ asset(product.icon?product.icon.path~product.icon.filename:"/Product Icons/missing.jpg") }}" alt="{{ product.name }}">
             <h2 class="productName">{{ product.name }}</h2>
-            <p class="productPrice">{{ product.price ~ "€" }}</p>
-            <button class="direct_purchase">Sofort Kaufen</button>
+            <img class="productIcon" src="{{ asset(product.icon?product.icon.path~product.icon.filename:"/Product Icons/missing.jpg") }}" alt="{{ product.name }}">
+            <h3 class="productPrice">{{ product.price|number_format(2) ~ " €" }}</h3>
+            <button class="submit_big">1 kaufen</button>
             <p>oder Anzahl wählen</p>
-            <button class="change_amount sub">-</button>
-            <input type="number" value="0">
-            <button class="change_amount add">+</button>
+            <div>
+                <button class="change_amount sub">-</button>
+                <input disabled class="amount" type="number" value="0">
+                <button class="change_amount add">+</button>
+            </div>
+
         </div>
         {% endfor %}
 
 
     </div>
 
-    <button class="collective_purchase" disabled><span class="collective_purchase_number">0</span> Produkte Kaufen</button>
+    <button class="collective_purchase" disabled><span class="collective_purchase_number">0</span> Produkte kaufen</button>
 
 </div>
 <div id="progressbar"></div>
-<div id="testing"></div>
 </body>
 </html>

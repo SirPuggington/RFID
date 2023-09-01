@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Carbon\Carbon;
 use Exception;
 use Pimcore\Model\DataObject;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,7 +45,13 @@ class ApiController extends FrontendController
 
 
         $last_modified = filemtime($file);
+        $now=Carbon::now();
 
-        return $this->json(['id' => $uid, 'last_modified' => $last_modified, 'name'=>$name, 'station'=>$station]);
+        return $this->json([
+            'id' => $uid,
+            'now'=>$now,
+            'last_modified' => $last_modified,
+            'name'=>$name,
+            'station'=>$station]);
     }
 }

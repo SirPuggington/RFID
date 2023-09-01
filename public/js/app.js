@@ -23,6 +23,7 @@ $(document).ready(function () {
                 success: function (response) {
                     $('#testing').text(activeUser)
                     if (response.last_modified > lastUpdate) {
+                        console.log(true)
                         let station = window.location.href.split('/station/')[1]
                         if (response.station === station) {
                             lastUpdate = response.last_modified;
@@ -56,6 +57,11 @@ $(document).ready(function () {
                                 $('input').val(0);
                             }
                         }
+                    }else{
+                        console.log(false)
+                        console.log(lastUpdate)
+                        console.log(response.last_modified)
+
                     }
                     if (lastUpdate + 30 < Math.floor(Date.now() / 1000) && activeUser !== null) {
                         activeUser = null;
@@ -81,7 +87,7 @@ $(document).ready(function () {
     }
 
     //directly buy single product
-    $('.direct_purchase').click(function () {
+    $('.submit_big').click(function () {
         selectedProduct = this.parentElement.dataset.product;
 
         let data = {};
@@ -94,7 +100,7 @@ $(document).ready(function () {
             success: function(data) {
                 console.log(data['success'])
                 if (data['success']) {
-                    $(location).prop('href', "https://snackwerke.ddev.site/checkout/" + activeStation + "/" + activeUser + "/" + data['total'])
+                    $(location).prop('href', "https://snackwerke.ddev.site/checkout/" + activeStation + "/" + data['transactionId'])
                 } else if (data['message'] === 'swiper no swiping') {
                     $(location).prop('href', "https://snackwerke.ddev.site/shame");
                 }
@@ -136,7 +142,7 @@ $(document).ready(function () {
             type: 'post',
             success: function(data) {
                 if (data['success']) {
-                    $(location).prop('href', "https://snackwerke.ddev.site/checkout/" + activeStation + "/" + activeUser + "/" + data['total'] + "/" + data['number'])
+                    $(location).prop('href', "https://snackwerke.ddev.site/checkout/" + activeStation + "/" + data['transactionId'])
                 } else if (data['message'] === 'swiper no swiping') {
                     $(location).prop('href', "https://snackwerke.ddev.site/shame");
                 }

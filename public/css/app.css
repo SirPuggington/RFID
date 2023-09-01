@@ -2,6 +2,7 @@ html, body {
     height: 100%;
     margin: 0;
     overflow: hidden;
+    font-family: "Roboto Light", sans-serif;
 }
 
 input::-webkit-outer-spin-button,
@@ -16,9 +17,18 @@ input[type=number] {
 }
 
 body {
-    background-image: url("https://img.freepik.com/free-vector/empty-underwater-blue-shine-abstract-background-light-bright-clean-ocean-sea_1284-42065.jpg?w=1380&t=st=1684140003~exp=1684140603~hmac=2f960fc26cf5595ddcfda64dedc4a0c4a0e4843a3e8d53da91df475cb611259b");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background:#09111d;
+}
+
+.container{
+    padding: 0 20%;
+    color: #6f8caf;
+    text-align: center;
+}
+
+.big{
+    font-size: xxx-large;
+    font-weight: lighter;
 }
 
 #mainText {
@@ -30,6 +40,7 @@ body {
     transform: translate(-50%, -50%);
     max-width: 50%;
     margin: 0 auto;
+    color: #6f8caf;
 }
 
 #progressbar {
@@ -66,13 +77,114 @@ body {
 
 .productCard{
     flex: 1;
-    margin: 10px;
+    margin: auto;
+    margin-top: 150px;
+    padding: 20px;
+    max-width: 300px;
+    height: 400px;
+    background-color: #6f8caf;;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border:5px solid #09111d
 }
 
 .products:after {
     content: "";
     display: table;
     clear: both;
+}
+
+.change_amount{
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    color: white;
+}
+
+.add{
+    background-color: #94bb21;
+    border:none;
+    border-radius: 0 10px 10px 0;
+
+}
+
+.sub{
+    background-color: #ffa035;
+    border:none;
+    border-radius: 10px 0 0 10px;
+
+}
+
+
+.amount{
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    font-size: 30px;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.amount:disabled{
+    background-color: white;
+    color: black;
+}
+
+.submit_big{
+   height: 50px;
+    width: 160px;
+    border: none;
+    border-radius: 2px;
+    background-color: #94bb21;
+    font-size: 20px ;
+    color: white;
+}
+.warning_big{
+   height: 50px;
+    width: 160px;
+    border: none;
+    border-radius: 2px;
+    background-color: #ffa035;
+    font-size: 20px ;
+    color: white;
+}
+.warning_big:disabled {
+ color: dimgrey;
+    background-color: grey;
+
+}
+
+.info_link{
+    color: white;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.info_link:hover{
+    color: #94bb21;
+}
+
+.flex_row button{
+    margin: 50px;
+}
+.transaction_table{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+table{
+    font-size: x-large;
+    display: block;
+}
+th{
+    padding: 10px;
+}
+td{
+    padding: 10px;
 }
 
 .station-list>h3{
@@ -102,10 +214,16 @@ body {
     color: whitesmoke;
 }
 
+.productIcon{
+    color: white;
+    height: 100px;
+}
+
 .collective_purchase{
     position: absolute;
-    bottom: -40px;
-    left: 35%;
-    width: 30%;
-    height: 30px;
+    bottom: -50px;
+    left: 25%;
+    width: 50%;
+    height: 50px;
+    font-size: 25px;
 }

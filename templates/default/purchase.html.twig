@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Einkauf erfolgreich</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+<body>
+{% if success %}
+    <img src="{{ asset('img/quellwerke-hintergrundbild.png') }}" alt="">
+    <div class="container">
+    <h1 class="big">Vielen Dank</h1>
+        {% set number=0 %}
+        {% for item in transaction.purchasedItems%}
+            {% set number = number+item.data.number%}
+        {% endfor %}
+    <h2>Dein Einkauf von <a class="info_link" href="/transaction/{{ station }}/{{ transaction.id }}">{{ number }} Produkten</a> im Wert von {{ transaction.price |number_format(2)  }}€ war erfolgreich </h2>
+    <h2>Dein neuer Kontostand beträgt </h2>
+        <h2 class="big">{{ transaction.currentBalance|number_format(2) }} €</h2>
+        <button class="submit_big" onclick="window.location.href = '/station/{{ station }}';">Fertig</button>
+{% else %}
+    <h1>Purchase Failed</h1>
+    <p>please try again</p>
+    <a href="/station/{{ station }}">OK</a>
+
+{% endif %}
+</div>
+</body>
+</html>
+

@@ -104,23 +104,34 @@ class DefaultController extends FrontendController
 
         return $this->json([
             'success'=>true,
-            'total'=>$total,
-            'number'=>$numberOfItems
+            'transactionId'=>$transaction->getId(),
             ]);
     }
 
     /**
-     * @Route("/checkout/{station}/{user}/{total}/{number}", methods="GET")
+     * @Route("/checkout/{station}/{transactionId}", methods="GET")
      * @throws Exception
      */
-    public function purchaseSuccessful($station,$user,$total,$number){
-        return $this->render('purchase.html.twig',[
+    public function purchaseSuccessful($station,$transactionId){
+        return $this->render('default/purchase.html.twig',[
             'success' => true,
-            'user' => DataObject\Employee::getByPath("/Employees/$user"),
+            'transaction' => DataObject\Transaction::getById($transactionId),
             'station' => $station,
-            'total' =>$total,
-            'number' => $number
+
             ]);
+    }
+
+    /**
+     * @Route("/transaction/{station}/{transactionId}", methods="GET")
+     * @throws Exception
+     */
+    public function transactionInfo($station,$transactionId){
+        return $this->render('default/transactionInfo.html.twig',[
+            'success' => true,
+            'transaction' => DataObject\Transaction::getById($transactionId),
+            'station' => $station,
+
+        ]);
     }
 
     /**

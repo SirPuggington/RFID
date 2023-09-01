@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Transaktionsdetails</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+<body>
+{% if success %}
+<img src="{{ asset('img/quellwerke-hintergrundbild.png') }}" alt="">
+<div class="container">
+    <h1 class="big">Transaktionsdetails</h1>
+    <div class="transaction_table">
+    <table>
+        <thead>
+        <th>Produkt</th>
+        <th>Anzahl</th>
+        <th>Preis</th>
+        </thead>
+
+        {% for item in transaction.purchasedItems %}
+            <div class="flex_row">
+                <tr>
+                    <td>{{ item.object.name }}</td>
+                    <td>{{ item.data.number }}</td>
+                    <td>{{ item.data.sum }}</td>
+                </tr>
+
+
+            </div>
+        {% endfor %}
+    </table>
+    </div>
+    <div class="flex_row">
+        <button class="submit_big" onclick="window.location.href = '/station/{{ station }}';">Fertig</button>
+        <button disabled class="warning_big" onclick="window.location.href = '/station/{{ station }}';">Geld zurück
+        </button>
+    </div>
+
+    {#    <a href="/station/{{ station }}">OK</a> #}
+    {% else %}
+        <h1>Purchase Failed</h1>
+        <p>please try again</p>
+        <a href="/station/{{ station }}">OK</a>
+
+    {% endif %}
+</div>
+</body>
+</html>
+
